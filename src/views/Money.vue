@@ -1,10 +1,5 @@
 <template>
-  <div>
-    <div>
-      Money.vue
-      <Nav />
-    </div>
-  </div>
+  <Layout> Money.vue </Layout>
 </template>
 
 <script lang="ts">
@@ -12,5 +7,3 @@ export default {
   name: "Money",
 };
 </script>
-
-<style lang="scss" scoped></style>
