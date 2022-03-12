@@ -1,9 +1,9 @@
 <template>
-  <Layout>Statistics.vue</Layout>
+  <Layout>Stats.vue</Layout>
 </template>
 
 <script lang="ts">
 export default {
-  name: "Statistics",
+  name: "Stats",
 };
 </script>
