@@ -1,6 +1,6 @@
 <template>
   <div class="pageWrapper">
-    <main>
+    <main :class="classPrefix && `${classPrefix}-content`">
       <slot />
     </main>
 
@@ -11,6 +11,7 @@
 <script>
 export default {
   name: "Layout",
+  props: ["classPrefix"],
 };
 </script>
 

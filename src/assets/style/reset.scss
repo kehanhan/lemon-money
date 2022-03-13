@@ -3,8 +3,45 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+body,
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+}
+ol,
+ul {
+  list-style: none;
+}
 a {
   text-decoration: none;
   color: inherit;
+}
+a:hover {
+  text-decoration: underline;
+}
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+}
+button {
+  border-radius: 0;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+:focus {
+  outline: none;
 }
