@@ -1,7 +1,7 @@
 <template>
   <nav>
-    <router-link to="/labels" class="item" active-class="selected">
-      <Icon name="labels" />
+    <router-link to="/Tags" class="item" active-class="selected">
+      <Icon name="tags" />
       标签</router-link
     >
     <router-link to="/money" class="item" active-class="selected">

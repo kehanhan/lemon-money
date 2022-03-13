@@ -1,9 +1,9 @@
 <template>
-  <Layout> Labels.vue </Layout>
+  <Layout> Tags.vue </Layout>
 </template>
 
 <script lang="ts">
 export default {
-  name: "Labels",
+  name: "Tags",
 };
 </script>
