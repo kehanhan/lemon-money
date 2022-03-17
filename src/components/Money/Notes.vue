@@ -7,9 +7,10 @@
 </template>
 
 <script lang="ts">
-export default {
-  name: "Notes",
-};
+import { Component, Vue } from "vue-property-decorator";
+
+@Component
+export default class Notes extends Vue {}
 </script>
 
 <style lang="scss" scoped>
@@ -31,14 +32,13 @@ export default {
     padding-left: 16px;
     height: 100%;
     background: transparent;
-    font-family: $font-song;
   }
 
   > #count {
     padding-right: 16px;
     height: 100%;
     font-size: 32px;
-    color: $color-highlight;
+    color: $color-highlight-red;
   }
 }
 </style>

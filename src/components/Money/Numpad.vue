@@ -13,10 +13,11 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: "Money",
-};
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+
+@Component
+export default class Numpad extends Vue {}
 </script>
 
 <style lang="scss" scoped>
@@ -25,7 +26,6 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  // font-weight: bold;
   background: #f6f6f6;
   > button {
     background: #f0f4f7;
@@ -33,6 +33,7 @@ export default {
     border-color: #e5e7eb;
     width: 25%;
     height: 45px;
+    color: black;
   }
   .icon {
     width: 28px;
