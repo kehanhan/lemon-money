@@ -1,8 +1,7 @@
 <template>
   <section class="notes">
-    <Icon name="edit" />
-    <input type="text" placeholder="点击输入备注..." />
-    <span id="count">100</span>
+    <input type="text" placeholder="点击输入备注..." v-model="inputValue" />
+    <span id="count">10000000.00</span>
   </section>
 </template>
 
@@ -10,7 +9,9 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class Notes extends Vue {}
+export default class Notes extends Vue {
+  inputValue = "";
+}
 </script>
 
 <style lang="scss" scoped>
@@ -20,25 +21,26 @@ export default class Notes extends Vue {}
   justify-content: space-between;
   align-items: center;
   height: 50px;
-  background: #f6f6f6;
+  background: #f0f4f7;
   .icon {
     margin-left: 16px;
     width: 28px;
     height: 28px;
   }
   > input {
+    max-width: 75vw;
     flex-grow: 1;
     border: none;
-    padding-left: 16px;
+    padding-left: 10px;
     height: 100%;
     background: transparent;
   }
 
   > #count {
-    padding-right: 16px;
+    padding-right: 10px;
     height: 100%;
-    font-size: 32px;
-    color: $color-highlight-red;
+    font-size: 20px;
+    line-height: 2.5;
   }
 }
 </style>
