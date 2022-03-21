@@ -1,14 +1,20 @@
 <template>
-  <section class="tags">
+  <section class="tag_list">
     <ul>
-      <li v-for="[name, icon] in tags" :key="name">
+      <li v-for="[name, icon] in tagList" :key="name">
         <div
           :class="{ selected: tag.indexOf(name) >= 0 }"
-          @click="selectTag(name)"
+          @click="select(name)"
         >
           <Icon :name="icon" />
         </div>
         <span>{{ name }}</span>
+      </li>
+      <li>
+        <div @click="select(name)">
+          <Icon name="setting" />
+        </div>
+        <span>设置</span>
       </li>
     </ul>
   </section>
@@ -18,10 +24,10 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
-export default class Tags extends Vue {
-  @Prop(Array) readonly tags: string[] | undefined;
+export default class TagList extends Vue {
+  @Prop(Array) readonly tagList: string[] | undefined;
   @Prop({ default: "" }) readonly tag!: string;
-  selectTag(name: string) {
+  select(name: string) {
     this.$emit("update:tag", name);
   }
 }
@@ -29,7 +35,7 @@ export default class Tags extends Vue {
 
 <style lang="scss" scoped>
 @import "@/assets/style/helper.scss";
-.tags {
+.tag_list {
   flex-grow: 1;
   > ul {
     display: flex;

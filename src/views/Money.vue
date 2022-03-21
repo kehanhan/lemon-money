@@ -5,7 +5,7 @@
       :amount.sync="record.amount"
       @submit="saveRecord"
     />
-    <Tags :tag.sync="record.tag" :tags="tags" />
+    <TagList :tag.sync="record.tag" :tagList="tagList" />
     <Type :type.sync="record.type" />
     {{ record }}
   </Layout>
@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import InputBox from "@/components/Money/InputBox.vue";
-import Tags from "@/components/Money/Tags.vue";
+import TagList from "@/components/Money/TagList.vue";
 import Type from "@/components/Money/Type.vue";
 import { Component, Vue, Watch } from "vue-property-decorator";
 
@@ -25,10 +25,10 @@ type Record = {
   date?: Date;
 };
 @Component({
-  components: { Type, Tags, InputBox },
+  components: { Type, TagList, InputBox },
 })
 export default class Money extends Vue {
-  tags = new Map([
+  tagList = new Map([
     ["服饰", "clothes"],
     ["餐饮", "food"],
     ["住房", "housing"],

@@ -1,8 +1,8 @@
 <template>
   <nav>
-    <router-link to="/Tags" class="item" active-class="selected">
-      <Icon name="tags" />
-      标签</router-link
+    <router-link to="/Billing" class="item" active-class="selected">
+      <Icon name="billing" />
+      账单</router-link
     >
     <router-link to="/money" class="item" active-class="selected">
       <Icon name="money" /> 记账</router-link
@@ -23,7 +23,6 @@ export default {
 <style lang="scss" scoped>
 @import "~@/assets/style/helper.scss";
 nav {
-  // border: 1px solid red;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
