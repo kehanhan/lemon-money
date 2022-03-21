@@ -7,7 +7,6 @@
     />
     <TagList :tag.sync="record.tag" :tagList="tagList" />
     <Type :type.sync="record.type" />
-    {{ record }}
   </Layout>
 </template>
 
