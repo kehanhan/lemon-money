@@ -8,20 +8,19 @@
         <strong>收入</strong>
       </li>
     </ul>
-    <Icon name="add" class="add" />
   </header>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 @Component
-export default class Head extends Vue {
-  type = "-"; //"-"表示支出,"+"表示收入
+export default class Type extends Vue {
+  @Prop({ default: "-" }) readonly type!: string;
   selectType(type: string) {
     if (type !== "+" && type !== "-") {
       throw new Error("type is unknown");
     }
-    this.type = type;
+    this.$emit("update:type", type);
   }
 }
 </script>
@@ -64,16 +63,6 @@ header {
         background: $color-highlight-green;
       }
     }
-  }
-
-  > .add {
-    position: absolute;
-    right: 16px;
-    bottom: 0;
-    top: 0;
-    margin: auto;
-    width: 25px;
-    height: 25px;
   }
 }
 </style>

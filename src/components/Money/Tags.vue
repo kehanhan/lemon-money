@@ -1,9 +1,9 @@
 <template>
   <section class="tags">
     <ul>
-      <li v-for="[icon, name] of dataSource" :key="[icon, name]">
+      <li v-for="[name, icon] in tags" :key="name">
         <div
-          :class="{ selected: selectedTags.indexOf(name) >= 0 }"
+          :class="{ selected: tag.indexOf(name) >= 0 }"
           @click="selectTag(name)"
         >
           <Icon :name="icon" />
@@ -19,13 +19,10 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class Tags extends Vue {
-  @Prop(Array) dataSource: string[] | undefined;
-  selectedTags: string[] = [];
+  @Prop(Array) readonly tags: string[] | undefined;
+  @Prop({ default: "" }) readonly tag!: string;
   selectTag(name: string) {
-    if (this.selectedTags.length > 0) {
-      this.selectedTags.splice(0, 1);
-    }
-    this.selectedTags.push(name);
+    this.$emit("update:tag", name);
   }
 }
 </script>

@@ -1,33 +1,44 @@
 <template>
   <Layout classPrefix="money">
-    <Numpad />
-    <Notes />
-    <Tags :dataSource="tags" />
-    <Head />
+    <Numpad :amount.sync="record.amount" />
+    <Notes :notes.sync="record.notes" :amount="record.amount" />
+    <Tags :tag.sync="record.tag" :tags="tags" />
+    <Type :type.sync="record.type" />
+    {{ record }}
   </Layout>
 </template>
 
-<script lang="js">
+<script lang="ts">
 import Numpad from "@/components/Money/Numpad.vue";
 import Notes from "@/components/Money/Notes.vue";
 import Tags from "@/components/Money/Tags.vue";
-import Head from "@/components/Money/Head.vue";
-export default {
-  name: "Money",
-  components: { Head, Tags, Notes, Numpad },
-  data(){
-    let tags = new Map([
-      ['clothes',"服饰"],
-      ['food',"餐饮"],
-      ['housing',"住房"],
-      ['traffic',"交通"],
-      ['fun','娱乐']
-    ])
-    return {
-      tags
-    }
-  }
+import Type from "@/components/Money/Type.vue";
+import { Component, Vue } from "vue-property-decorator";
+
+type Record = {
+  tag: string;
+  notes: string;
+  type: string;
+  amount: string;
 };
+@Component({
+  components: { Type, Tags, Notes, Numpad },
+})
+export default class Money extends Vue {
+  tags = new Map([
+    ["服饰", "clothes"],
+    ["餐饮", "food"],
+    ["住房", "housing"],
+    ["交通", "traffic"],
+    ["娱乐", "fun"],
+  ]);
+  record: Record = {
+    tag: "",
+    notes: "",
+    type: "-",
+    amount: "0",
+  };
+}
 </script>
 
 <style lang="scss">

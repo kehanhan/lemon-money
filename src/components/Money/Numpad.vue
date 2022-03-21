@@ -23,39 +23,32 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class Numpad extends Vue {
-  output = "0";
+  @Prop({ default: "0" }) readonly amount!: string;
+  output = this.amount;
 
   inputContent(event: MouseEvent) {
     const input = (event.target as HTMLButtonElement).textContent!;
     if (
-      this.output.length === 8 &&
-      this.output.indexOf(".") < 0 &&
-      input !== "."
+      (this.output.length === 8 &&
+        this.output.indexOf(".") < 0 &&
+        input !== ".") ||
+      (this.output.indexOf(".") >= 0 && input === ".") ||
+      (this.output.indexOf(".") > 0 &&
+        this.output.length - this.output.indexOf(".") > 2)
     ) {
       return;
     }
-    if (
-      this.output.indexOf(".") > 0 &&
-      this.output.length - this.output.indexOf(".") > 2
-    ) {
-      return;
+
+    if (this.output === "0" && "0123456789".indexOf(input) >= 0) {
+      this.output = input;
+    } else {
+      this.output += input;
     }
-    if (this.output === "0") {
-      if ("0123456789".indexOf(input) >= 0) {
-        this.output = input;
-      } else {
-        this.output += input;
-      }
-      return;
-    }
-    if (this.output.indexOf(".") >= 0 && input === ".") {
-      return;
-    }
-    this.output += input;
+    this.$emit("update:amount", this.output);
   }
   deleteContent() {
     if (this.output.length === 1) {
@@ -73,7 +66,6 @@ export default class Numpad extends Vue {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  // background: #f6f6f6;
   > button {
     background: #f0f4f7;
     border: 1px solid;

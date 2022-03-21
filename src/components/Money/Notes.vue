@@ -1,16 +1,24 @@
 <template>
   <section class="notes">
-    <input type="text" placeholder="点击输入备注..." v-model="inputValue" />
-    <span id="count">10000000.00</span>
+    <input
+      type="text"
+      placeholder="点击输入备注..."
+      @input="updateNotes($event.target.value)"
+    />
+    <span id="count">{{ amount }}</span>
   </section>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class Notes extends Vue {
-  inputValue = "";
+  @Prop({ default: "0" }) readonly amount!: string;
+  @Prop({ default: "" }) readonly notes!: string;
+  updateNotes(notes: string) {
+    this.$emit("update:notes", notes);
+  }
 }
 </script>
 
