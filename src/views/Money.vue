@@ -1,7 +1,6 @@
 <template>
   <Layout classPrefix="money">
-    <Numpad :amount.sync="record.amount" />
-    <Notes :notes.sync="record.notes" :amount="record.amount" />
+    <InputBox :notes.sync="record.notes" :amount.sync="record.amount" />
     <Tags :tag.sync="record.tag" :tags="tags" />
     <Type :type.sync="record.type" />
     {{ record }}
@@ -9,8 +8,7 @@
 </template>
 
 <script lang="ts">
-import Numpad from "@/components/Money/Numpad.vue";
-import Notes from "@/components/Money/Notes.vue";
+import InputBox from "@/components/Money/InputBox.vue";
 import Tags from "@/components/Money/Tags.vue";
 import Type from "@/components/Money/Type.vue";
 import { Component, Vue } from "vue-property-decorator";
@@ -19,10 +17,10 @@ type Record = {
   tag: string;
   notes: string;
   type: string;
-  amount: string;
+  amount: number;
 };
 @Component({
-  components: { Type, Tags, Notes, Numpad },
+  components: { Type, Tags, InputBox },
 })
 export default class Money extends Vue {
   tags = new Map([
@@ -36,7 +34,7 @@ export default class Money extends Vue {
     tag: "",
     notes: "",
     type: "-",
-    amount: "0",
+    amount: 0,
   };
 }
 </script>
