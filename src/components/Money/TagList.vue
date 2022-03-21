@@ -40,11 +40,12 @@ export default class TagList extends Vue {
 @import "@/assets/style/helper.scss";
 .tag_list {
   flex-grow: 1;
+  overflow: auto;
   > ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 10px;
 
     > li {
       width: 20%;
@@ -59,8 +60,8 @@ export default class TagList extends Vue {
       }
 
       & > div {
-        width: 40px;
-        height: 40px;
+        width: 48px;
+        height: 48px;
         border-radius: 50%;
         border: 1px solid;
         border-color: #e5e7eb;
@@ -68,9 +69,8 @@ export default class TagList extends Vue {
         display: flex;
         justify-content: center;
         align-items: center;
-        > svg {
-          width: 32px;
-          height: 32px;
+        & .icon {
+          font-size: 36px;
         }
       }
 

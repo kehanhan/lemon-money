@@ -45,7 +45,7 @@
       </ul>
     </main>
     <footer>
-      <button id="addTag">添加类别</button>
+      <button id="addTag" @click="addTag">添加类别</button>
     </footer>
   </div>
 </template>
@@ -57,6 +57,9 @@ import { Component, Vue } from "vue-property-decorator";
 export default class Tags extends Vue {
   back() {
     this.$router.replace("/money");
+  }
+  addTag() {
+    this.$router.replace("/addTag");
   }
 }
 </script>

@@ -5,6 +5,7 @@ import Billing from "@/views/Billing.vue";
 import Stats from "@/views/Stats.vue";
 import NotFound from "@/views/NotFound.vue";
 import Tags from "@/components/Money/Tags.vue";
+import AddTag from "@/components/Money/AddTag.vue";
 
 Vue.use(VueRouter);
 
@@ -28,6 +29,10 @@ const routes: Array<RouteConfig> = [
   {
     path: "/tags",
     component: Tags,
+  },
+  {
+    path: "/addTag",
+    component: AddTag,
   },
   {
     path: "*",
