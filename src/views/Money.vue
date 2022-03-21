@@ -1,6 +1,10 @@
 <template>
   <Layout classPrefix="money">
-    <InputBox :notes.sync="record.notes" :amount.sync="record.amount" />
+    <InputBox
+      :notes.sync="record.notes"
+      :amount.sync="record.amount"
+      @submit="saveRecord"
+    />
     <Tags :tag.sync="record.tag" :tags="tags" />
     <Type :type.sync="record.type" />
     {{ record }}
@@ -11,13 +15,14 @@
 import InputBox from "@/components/Money/InputBox.vue";
 import Tags from "@/components/Money/Tags.vue";
 import Type from "@/components/Money/Type.vue";
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 
 type Record = {
   tag: string;
   notes: string;
   type: string;
   amount: number;
+  date?: Date;
 };
 @Component({
   components: { Type, Tags, InputBox },
@@ -36,6 +41,20 @@ export default class Money extends Vue {
     type: "-",
     amount: 0,
   };
+  recordList: Record[] = JSON.parse(
+    window.localStorage.getItem("recordList") || "[]"
+  );
+
+  saveRecord() {
+    const recordCopy = JSON.parse(JSON.stringify(this.record));
+    recordCopy.date = new Date();
+    this.recordList.push(recordCopy);
+  }
+
+  @Watch("recordList")
+  onRecordListChanged() {
+    window.localStorage.setItem("recordList", JSON.stringify(this.recordList));
+  }
 }
 </script>
 

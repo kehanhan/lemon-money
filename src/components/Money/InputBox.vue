@@ -27,7 +27,7 @@
       ><button @click="inputContent">0</button
       ><button @click="deleteContent()">
         <Icon name="delete" /></button
-      ><button id="confirm">确认</button>
+      ><button id="confirm" @click="confirm">确认</button>
     </section>
   </div>
 </template>
@@ -62,7 +62,6 @@ export default class InputBox extends Vue {
     } else {
       this.output += input;
     }
-    this.$emit("update:amount", parseFloat(this.output));
   }
   deleteContent() {
     if (this.output.length === 1) {
@@ -70,6 +69,11 @@ export default class InputBox extends Vue {
     } else {
       this.output = this.output.slice(0, -1);
     }
+  }
+  confirm() {
+    this.$emit("update:amount", parseFloat(this.output));
+    this.$emit("submit", parseFloat(this.output));
+    this.output = "0";
   }
 }
 </script>
