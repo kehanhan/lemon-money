@@ -37,7 +37,7 @@ export default class TagList extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/style/helper.scss";
+@import "src/assets/style/helper.scss";
 .tag_list {
   flex-grow: 1;
   overflow: auto;

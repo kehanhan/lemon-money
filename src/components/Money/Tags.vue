@@ -65,7 +65,7 @@ export default class Tags extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/style/helper.scss";
+@import "src/assets/style/helper.scss";
 .wrapper {
   display: flex;
   flex-direction: column;

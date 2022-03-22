@@ -5,8 +5,8 @@
 </template>
 
 <style lang="scss">
-@import "~@/assets/style/helper.scss";
-@import "~@/assets/style/reset.scss";
+@import "assets/style/reset";
+@import "assets/style/helper";
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

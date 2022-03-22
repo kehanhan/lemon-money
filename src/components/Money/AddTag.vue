@@ -70,7 +70,7 @@ export default class AddTag extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/style/helper.scss";
+@import "src/assets/style/helper";
 .tagIcon {
   width: 48px;
   height: 48px;

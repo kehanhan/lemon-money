@@ -26,7 +26,7 @@ export default class Type extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import "~@/assets/style/helper.scss";
+@import "src/assets/style/helper.scss";
 header {
   background: $color-theme;
 
