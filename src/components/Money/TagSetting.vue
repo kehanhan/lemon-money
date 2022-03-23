@@ -9,38 +9,27 @@
         <span class="title">类别设置</span>
       </div>
       <div class="types">
-        <button class="selected">支出</button><button>收入</button>
+        <button :class="selectedType === '-' && 'selected'">支出</button
+        ><button :class="selectedType === '+' && 'selected'">收入</button>
       </div>
     </header>
     <main>
-      <ul>
-        <li>
+      <ul v-if="selectedType === '-'">
+        <li v-for="tag in costTagList" :key="tag.name">
           <div>
             <Icon name="remove" />
-            <Icon name="clothes" />
+            <Icon :name="tag.icon" />
           </div>
-          <span>服饰</span>
+          <span>{{ tag.name }}</span>
         </li>
-        <li>
+      </ul>
+      <ul v-if="selectedType === '+'">
+        <li v-for="tag in incomeTagList" :key="tag.name">
           <div>
             <Icon name="remove" />
-            <Icon name="clothes" />
+            <Icon :name="tag.icon" />
           </div>
-          <span>服饰</span>
-        </li>
-        <li>
-          <div>
-            <Icon name="remove" />
-            <Icon name="clothes" />
-          </div>
-          <span>服饰</span>
-        </li>
-        <li>
-          <div>
-            <Icon name="remove" />
-            <Icon name="clothes" />
-          </div>
-          <span>服饰</span>
+          <span>{{ tag.name }}</span>
         </li>
       </ul>
     </main>
@@ -52,9 +41,14 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import tagListOutModel from "@/models/costTagListModel";
+import costTagListModel from "@/models/costTagListModel";
 
 @Component
 export default class Tags extends Vue {
+  selectedType = window.selectedType;
+  costTagList = window.costTagList;
+  incomeTagList = window.incomeTagList;
   back() {
     this.$router.replace("/money");
   }

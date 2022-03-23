@@ -3,9 +3,19 @@
     <InputBox
       :notes.sync="record.notes"
       :amount.sync="record.amount"
-      @submit="saveRecord"
+      @submit="pushRecord"
     />
-    <TagList :tag.sync="record.tag" :tagList="tagList" />
+    {{ record }}
+    <TagList
+      v-if="record.type === '-'"
+      :selectedTag.sync="record.tag"
+      :tagList="costTagList"
+    />
+    <TagList
+      v-else-if="record.type === '+'"
+      :selectedTag.sync="record.tag"
+      :tagList="incomeTagList"
+    />
     <Type :type.sync="record.type" />
   </Layout>
 </template>
@@ -15,44 +25,38 @@ import InputBox from "@/components/Money/InputBox.vue";
 import TagList from "@/components/Money/TagList.vue";
 import Type from "@/components/Money/Type.vue";
 import { Component, Vue, Watch } from "vue-property-decorator";
+import costTagListModel from "@/models/costTagListModel";
+import incomeTagListModel from "@/models/incomeTagListModel";
+import recordListModel from "@/models/recordListModel";
 
-type Record = {
-  tag: string;
-  notes: string;
-  type: string;
-  amount: number;
-  date?: Date;
-};
 @Component({
   components: { Type, TagList, InputBox },
 })
 export default class Money extends Vue {
-  tagList = new Map([
-    ["服饰", "clothes"],
-    ["餐饮", "food"],
-    ["住房", "housing"],
-    ["交通", "traffic"],
-    ["娱乐", "fun"],
-  ]);
-  record: Record = {
-    tag: "",
+  costTagList = window.costTagList;
+  incomeTagList = window.incomeTagList;
+  recordList: RecordItem[] = recordListModel.fetch();
+  record: RecordItem = {
+    tag: { name: "服饰", icon: "clothes" },
     notes: "",
     type: "-",
     amount: 0,
   };
-  recordList: Record[] = JSON.parse(
-    window.localStorage.getItem("recordList") || "[]"
-  );
 
-  saveRecord() {
-    const recordCopy = JSON.parse(JSON.stringify(this.record));
-    recordCopy.date = new Date();
-    this.recordList.push(recordCopy);
+  pushRecord() {
+    recordListModel.push(this.record, this.recordList);
   }
-
+  @Watch("record.type")
+  onRecordTypeChanged(type: string) {
+    if (type === "+") {
+      this.record.tag = { name: "工资", icon: "salary" };
+    } else {
+      this.record.tag = { name: "服饰", icon: "clothes" };
+    }
+  }
   @Watch("recordList")
-  onRecordListChanged() {
-    window.localStorage.setItem("recordList", JSON.stringify(this.recordList));
+  onRecordListChanged(recordList: RecordItem) {
+    recordListModel.save(recordList);
   }
 }
 </script>

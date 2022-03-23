@@ -1,17 +1,17 @@
 <template>
   <section class="tag_list">
     <ul>
-      <li v-for="[name, icon] in tagList" :key="name">
+      <li v-for="tag in tagList" :key="tag.name">
         <div
-          :class="{ selected: tag.indexOf(name) >= 0 }"
-          @click="select(name)"
+            :class="{ selected: tag.name === selectedTag.name }"
+          @click="select(tag)"
         >
-          <Icon :name="icon" />
+          <Icon :name="tag.icon" />
         </div>
-        <span>{{ name }}</span>
+        <span>{{ tag.name }}</span>
       </li>
       <li>
-        <div @click="setting">
+        <div @click="tagSetting">
           <Icon name="setting" />
         </div>
         <span>设置</span>
@@ -25,13 +25,13 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class TagList extends Vue {
-  @Prop(Array) readonly tagList: string[] | undefined;
-  @Prop({ default: "" }) readonly tag!: string;
-  select(name: string) {
-    this.$emit("update:tag", name);
+  @Prop(Array) readonly tagList: [] | undefined;
+  @Prop({ default: "" }) readonly selectedTag!: TagItem;
+  select(tag:TagItem) {
+    this.$emit("update:selectedTag", tag);
   }
-  setting() {
-    this.$router.replace("/Tags");
+  tagSetting() {
+    this.$router.replace("/tag-setting");
   }
 }
 </script>

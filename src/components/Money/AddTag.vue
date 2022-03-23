@@ -64,7 +64,7 @@ import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class AddTag extends Vue {
   back() {
-    this.$router.replace("/tags");
+    this.$router.replace("/tag-setting");
   }
 }
 </script>

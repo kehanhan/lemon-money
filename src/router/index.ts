@@ -4,7 +4,7 @@ import Money from "@/views/Money.vue";
 import Billing from "@/views/Billing.vue";
 import Stats from "@/views/Stats.vue";
 import NotFound from "@/views/NotFound.vue";
-import Tags from "@/components/Money/Tags.vue";
+import TagSetting from "@/components/Money/TagSetting.vue";
 import AddTag from "@/components/Money/AddTag.vue";
 
 Vue.use(VueRouter);
@@ -27,8 +27,8 @@ const routes: Array<RouteConfig> = [
     component: Stats,
   },
   {
-    path: "/tags",
-    component: Tags,
+    path: "/tag-setting",
+    component: TagSetting,
   },
   {
     path: "/addTag",
