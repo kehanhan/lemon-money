@@ -14,8 +14,6 @@ Vue.component("Layout", Layout);
 Vue.component("Icon", Icon);
 
 window.selectedType = "-";
-window.costTagList = TagListModel.fetch("-");
-window.incomeTagList = TagListModel.fetch("+");
 window.tagIcons = [
   "clothes",
   "food",
@@ -31,6 +29,10 @@ window.tagIcons = [
   "reimbursements",
   "salary",
 ];
+window.costTagList = TagListModel.fetch("-");
+window.incomeTagList = TagListModel.fetch("+");
+window.newTag = (name: string, icon: string) => TagListModel.new(name, icon);
+window.removeTag = (name: string) => TagListModel.remove(name);
 
 new Vue({
   router,
