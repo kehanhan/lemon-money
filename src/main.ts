@@ -14,9 +14,23 @@ Vue.component("Layout", Layout);
 Vue.component("Icon", Icon);
 
 window.selectedType = "-";
-window.costTagList = TagListModel.fetch('-');
-window.incomeTagList = TagListModel.fetch('+');
-window.tagIcons = ['clothes','food','fun','housing','traffic','bonus','finance','living-cost','lottery','part-time','refund','reimbursements','salary'];
+window.costTagList = TagListModel.fetch("-");
+window.incomeTagList = TagListModel.fetch("+");
+window.tagIcons = [
+  "clothes",
+  "food",
+  "fun",
+  "housing",
+  "traffic",
+  "bonus",
+  "finance",
+  "living-cost",
+  "lottery",
+  "part-time",
+  "refund",
+  "reimbursements",
+  "salary",
+];
 
 new Vue({
   router,

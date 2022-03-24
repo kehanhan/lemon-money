@@ -32,10 +32,12 @@ const TagListModel = {
       return this.incomeTagList;
     }
   },
-  save(type: string) {
+  save() {
     window.localStorage.setItem(
-      type === "-" ? costKey : incomeKey,
-      JSON.stringify(type === "-" ? this.costTagList : this.incomeTagList)
+      window.selectedType === "-" ? costKey : incomeKey,
+      JSON.stringify(
+        window.selectedType === "-" ? this.costTagList : this.incomeTagList
+      )
     );
   },
   new(name: string, icon: string) {
@@ -66,8 +68,28 @@ const TagListModel = {
       }
       this.incomeTagList.push(newTag);
     }
-    this.save(type);
+    this.save();
     return newTag;
+  },
+  remove(name: string) {
+    if (window.selectedType !== "-" && window.selectedType !== "+") {
+      throw new Error("type is illegal");
+    } else if (window.selectedType === "-") {
+      for (let i = 0; i < this.costTagList.length; i++) {
+        if (this.costTagList[i].name === name) {
+          this.costTagList.splice(i, 1);
+          break;
+        }
+      }
+    } else {
+      for (let i = 0; i < this.incomeTagList.length; i++) {
+        if (this.incomeTagList[i].name === name) {
+          this.incomeTagList.splice(i, 1);
+          break;
+        }
+      }
+    }
+    this.save();
   },
 };
 export default TagListModel;

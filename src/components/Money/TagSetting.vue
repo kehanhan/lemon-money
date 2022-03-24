@@ -26,16 +26,16 @@
       <ul v-if="selectedType === '-'">
         <li v-for="tag in costTagList" :key="tag.name">
           <div>
-            <Icon name="remove" />
+            <Icon name="remove" @click.native="removeTag(tag.name)" />
             <Icon :name="tag.icon" />
           </div>
           <span>{{ tag.name }}</span>
         </li>
       </ul>
-      <ul v-if="selectedType === '+'">
+      <ul v-else-if="selectedType === '+'">
         <li v-for="tag in incomeTagList" :key="tag.name">
           <div>
-            <Icon name="remove" />
+            <Icon name="remove" @click.native="removeTag(tag.name)" />
             <Icon :name="tag.icon" />
           </div>
           <span>{{ tag.name }}</span>
@@ -50,6 +50,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import TagListModel from "@/models/TagListModel";
 
 @Component
 export default class Tags extends Vue {
@@ -59,6 +60,9 @@ export default class Tags extends Vue {
   selectType(type: string) {
     this.selectedType = type;
     window.selectedType = type;
+  }
+  removeTag(name: string) {
+    TagListModel.remove(name);
   }
 }
 </script>
