@@ -25,7 +25,6 @@ import InputBox from "@/components/Money/InputBox.vue";
 import TagList from "@/components/Money/TagList.vue";
 import Type from "@/components/Money/Type.vue";
 import {Component, Vue} from "vue-property-decorator";
-import recordListModel from "@/models/recordListModel";
 
 @Component({
   components: {Type, TagList, InputBox},
@@ -33,7 +32,7 @@ import recordListModel from "@/models/recordListModel";
 export default class Money extends Vue {
   costTagList = window.costTagList;
   incomeTagList = window.incomeTagList;
-  recordList: RecordItem[] = recordListModel.fetch();
+  recordList = window.recordList;
   record: RecordItem = {
     tag: {name: "", icon: ""},
     notes: "",
@@ -42,7 +41,7 @@ export default class Money extends Vue {
   };
 
   newRecord() {
-    recordListModel.new(this.record);
+    window.newRecord(this.record);
   }
 }
 </script>

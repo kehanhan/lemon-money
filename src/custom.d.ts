@@ -17,4 +17,6 @@ interface Window {
   incomeTagList: TagItem[];
   newTag: (name: string, icon: string) => TagItem | undefined;
   removeTag: (name: string) => void;
+  recordList: RecordItem[];
+  newRecord: (record: RecordItem) => void;
 }
