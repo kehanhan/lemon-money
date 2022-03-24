@@ -3,7 +3,7 @@
     <InputBox
       :notes.sync="record.notes"
       :amount.sync="record.amount"
-      @submit="pushRecord"
+      @submit="newRecord"
     />
     {{ record }}
     <TagList
@@ -35,26 +35,19 @@ export default class Money extends Vue {
   incomeTagList = window.incomeTagList;
   recordList: RecordItem[] = recordListModel.fetch();
   record: RecordItem = {
-    tag: { name: "服饰", icon: "clothes" },
+    tag: { name: "", icon: "" },
     notes: "",
     type: "-",
     amount: 0,
   };
 
-  pushRecord() {
-    recordListModel.push(this.record, this.recordList);
+  newRecord() {
+    recordListModel.new(this.record);
   }
-  @Watch("record.type")
-  onRecordTypeChanged(type: string) {
-    if (type === "+") {
-      this.record.tag = { name: "工资", icon: "salary" };
-    } else {
-      this.record.tag = { name: "服饰", icon: "clothes" };
-    }
-  }
+
   @Watch("recordList")
-  onRecordListChanged(recordList: RecordItem) {
-    recordListModel.save(recordList);
+  onRecordListChanged() {
+    recordListModel.save();
   }
 }
 </script>

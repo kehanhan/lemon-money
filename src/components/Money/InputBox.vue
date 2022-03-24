@@ -4,7 +4,7 @@
       <input
         type="text"
         placeholder="点击输入备注..."
-        @input="updateNotes($event.target.value)"
+        @input="$emit('update:notes', $event.target.value)"
       />
       <span id="output">{{ output }}</span>
     </section>
@@ -41,9 +41,6 @@ export default class InputBox extends Vue {
   @Prop({ default: "" }) readonly notes!: string;
 
   output = this.amount.toString();
-  updateNotes(notes: string) {
-    this.$emit("update:notes", notes);
-  }
   inputContent(event: MouseEvent) {
     const input = (event.target as HTMLButtonElement).textContent!;
     if (

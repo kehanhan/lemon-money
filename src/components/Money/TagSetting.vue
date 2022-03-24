@@ -2,7 +2,7 @@
   <div class="wrapper">
     <header>
       <div class="text">
-        <div class="back" @click="back">
+        <div class="back" @click="$router.replace('/money')">
           <Icon name="back" />
           <span>返回</span>
         </div>
@@ -43,7 +43,7 @@
       </ul>
     </main>
     <footer>
-      <button id="addTag" @click="addTag">添加类别</button>
+      <button id="addTag" @click="$router.replace('/addTag')">添加类别</button>
     </footer>
   </div>
 </template>
@@ -59,12 +59,6 @@ export default class Tags extends Vue {
   selectType(type: string) {
     this.selectedType = type;
     window.selectedType = type;
-  }
-  back() {
-    this.$router.replace("/money");
-  }
-  addTag() {
-    this.$router.replace("/addTag");
   }
 }
 </script>

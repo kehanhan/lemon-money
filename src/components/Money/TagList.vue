@@ -11,7 +11,7 @@
         <span>{{ tag.name }}</span>
       </li>
       <li>
-        <div @click="tagSetting">
+        <div @click="$router.replace('/tag-setting')">
           <Icon name="setting" />
         </div>
         <span>设置</span>
@@ -29,9 +29,6 @@ export default class TagList extends Vue {
   @Prop({ default: "" }) readonly selectedTag!: TagItem;
   select(tag:TagItem) {
     this.$emit("update:selectedTag", tag);
-  }
-  tagSetting() {
-    this.$router.replace("/tag-setting");
   }
 }
 </script>

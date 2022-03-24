@@ -18,7 +18,7 @@ export default class Type extends Vue {
   @Prop({ default: "-" }) readonly type!: string;
   selectType(type: string) {
     if (type !== "+" && type !== "-") {
-      throw new Error("type is unknown");
+      throw new Error("type is illegal");
     }
     window.selectedType = type;
     this.$emit("update:type", type);

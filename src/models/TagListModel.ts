@@ -52,19 +52,17 @@ const TagListModel = {
     }
     const newTag: TagItem = { name: `${name}`, icon: `${icon}` };
     if (type === "-") {
-      for (let i = 0; i < this.costTagList.length; i++) {
-        if (this.costTagList[i].name === name) {
-          window.alert("标签名不能重复");
-          return;
-        }
+      const names = this.costTagList.map((item) => item.name);
+      if (names.indexOf(name) >= 0) {
+        window.alert("标签名不能重复");
+        return;
       }
       this.costTagList.push(newTag);
     } else {
-      for (let i = 0; i < this.incomeTagList.length; i++) {
-        if (this.incomeTagList[i].name === name) {
-          window.alert("标签名不能重复");
-          return;
-        }
+      const names = this.incomeTagList.map((item) => item.name);
+      if (names.indexOf(name) >= 0) {
+        window.alert("标签名不能重复");
+        return;
       }
       this.incomeTagList.push(newTag);
     }
