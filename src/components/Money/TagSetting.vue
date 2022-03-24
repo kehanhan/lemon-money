@@ -9,8 +9,17 @@
         <span class="title">类别设置</span>
       </div>
       <div class="types">
-        <button :class="selectedType === '-' && 'selected'">支出</button
-        ><button :class="selectedType === '+' && 'selected'">收入</button>
+        <button
+          :class="selectedType === '-' && 'selected'"
+          @click="selectType('-')"
+        >
+          支出</button
+        ><button
+          :class="selectedType === '+' && 'selected'"
+          @click="selectType('+')"
+        >
+          收入
+        </button>
       </div>
     </header>
     <main>
@@ -41,14 +50,16 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import tagListOutModel from "@/models/costTagListModel";
-import costTagListModel from "@/models/costTagListModel";
 
 @Component
 export default class Tags extends Vue {
   selectedType = window.selectedType;
   costTagList = window.costTagList;
   incomeTagList = window.incomeTagList;
+  selectType(type: string) {
+    this.selectedType = type;
+    window.selectedType = type;
+  }
   back() {
     this.$router.replace("/money");
   }

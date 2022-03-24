@@ -6,51 +6,30 @@
           <Icon name="back" />
           <span @click="back">返回</span>
         </span>
-        <span class="title">添加支出类别</span>
-        <span class="complete">完成</span>
+        <span v-if="selectedType === '-'" class="title">添加支出类别</span>
+        <span v-else-if="selectedType === '+'" class="title">添加收入类别</span>
+        <span class="complete" @click="complete">完成</span>
       </div>
       <div class="edit">
         <div id="selectedIcon" class="tagIcon">
-          <Icon name="clothes" />
+          <Icon :name="selectedIcon" />
         </div>
-        <input type="text" placeholder="请输入类别名称(不超过4个汉字)" />
+        <input
+          type="text"
+          placeholder="请输入类别名称(不超过4个汉字)"
+          v-model="tagName"
+        />
       </div>
     </header>
     <main>
       <ul>
-        <li>
-          <div class="tagIcon">
-            <Icon name="fun" />
-          </div>
-        </li>
-        <li>
-          <div class="tagIcon">
-            <Icon name="fun" />
-          </div>
-        </li>
-        <li>
-          <div class="tagIcon">
-            <Icon name="fun" />
-          </div>
-        </li>
-        <li>
-          <div class="tagIcon">
-            <Icon name="fun" />
-          </div>
-        </li>
-        <li>
-          <div class="tagIcon">
-            <Icon name="fun" />
-          </div>
-        </li>
-        <li>
-          <div class="tagIcon">
-            <Icon name="fun" />
-          </div>
-        </li>
-        <li>
-          <div class="tagIcon">
-            <Icon name="fun" />
+        <li v-for="icon in tagIcons" :key="icon">
+          <div
+            class="tagIcon"
+            :class="{ selected: icon === selectedIcon }"
+            @click="select(icon)"
+          >
+            <Icon :name="icon" />
           </div>
         </li>
       </ul>
@@ -60,11 +39,22 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import TagListModel from "@/models/TagListModel";
 
 @Component
 export default class AddTag extends Vue {
+  tagIcons = window.tagIcons;
+  selectedType = window.selectedType;
+  selectedIcon = "clothes";
+  tagName = "";
+  select(icon: string) {
+    this.selectedIcon = icon;
+  }
   back() {
     this.$router.replace("/tag-setting");
+  }
+  complete() {
+    TagListModel.new(this.tagName, this.selectedIcon);
   }
 }
 </script>

@@ -13,4 +13,5 @@ interface Window {
   selectedType: string;
   costTagList: TagItem[];
   incomeTagList: TagItem[];
+  tagIcons: string[];
 }

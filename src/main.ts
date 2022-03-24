@@ -6,8 +6,7 @@ import store from "./store";
 import Nav from "@/components/Nav.vue";
 import Layout from "@/components/Layout.vue";
 import Icon from "@/components/Icon.vue";
-import CostTagListModel from "@/models/costTagListModel";
-import IncomeTagListModel from "@/models/incomeTagListModel";
+import TagListModel from "@/models/TagListModel";
 
 Vue.config.productionTip = false;
 Vue.component("Nav", Nav);
@@ -15,8 +14,9 @@ Vue.component("Layout", Layout);
 Vue.component("Icon", Icon);
 
 window.selectedType = "-";
-window.costTagList = CostTagListModel.fetch();
-window.incomeTagList = IncomeTagListModel.fetch();
+window.costTagList = TagListModel.fetch('-');
+window.incomeTagList = TagListModel.fetch('+');
+window.tagIcons = ['clothes','food','fun','housing','traffic','bonus','finance','living-cost','lottery','part-time','refund','reimbursements','salary'];
 
 new Vue({
   router,

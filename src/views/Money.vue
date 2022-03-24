@@ -25,8 +25,6 @@ import InputBox from "@/components/Money/InputBox.vue";
 import TagList from "@/components/Money/TagList.vue";
 import Type from "@/components/Money/Type.vue";
 import { Component, Vue, Watch } from "vue-property-decorator";
-import costTagListModel from "@/models/costTagListModel";
-import incomeTagListModel from "@/models/incomeTagListModel";
 import recordListModel from "@/models/recordListModel";
 
 @Component({

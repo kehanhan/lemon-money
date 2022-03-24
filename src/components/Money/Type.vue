@@ -17,10 +17,10 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 export default class Type extends Vue {
   @Prop({ default: "-" }) readonly type!: string;
   selectType(type: string) {
-    window.selectedType = type;
     if (type !== "+" && type !== "-") {
       throw new Error("type is unknown");
     }
+    window.selectedType = type;
     this.$emit("update:type", type);
   }
 }
