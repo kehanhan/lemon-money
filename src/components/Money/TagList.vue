@@ -4,15 +4,15 @@
       <li v-for="tag in tagList" :key="tag.name">
         <div
             :class="{ selected: tag.name === selectedTag.name }"
-          @click="select(tag)"
+            @click="$emit('update:selectedTag',tag)"
         >
-          <Icon :name="tag.icon" />
+          <Icon :name="tag.icon"/>
         </div>
         <span>{{ tag.name }}</span>
       </li>
       <li>
         <div @click="$router.replace('/tag-setting')">
-          <Icon name="setting" />
+          <Icon name="setting"/>
         </div>
         <span>设置</span>
       </li>
@@ -21,23 +21,22 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import {Component, Prop, Vue} from "vue-property-decorator";
 
 @Component
 export default class TagList extends Vue {
   @Prop(Array) readonly tagList: [] | undefined;
-  @Prop({ default: "" }) readonly selectedTag!: TagItem;
-  select(tag:TagItem) {
-    this.$emit("update:selectedTag", tag);
-  }
+  @Prop({default: ""}) readonly selectedTag!: TagItem;
 }
 </script>
 
 <style lang="scss" scoped>
 @import "src/assets/style/helper.scss";
+
 .tag_list {
   flex-grow: 1;
   overflow: auto;
+
   > ul {
     display: flex;
     flex-wrap: wrap;
@@ -66,6 +65,7 @@ export default class TagList extends Vue {
         display: flex;
         justify-content: center;
         align-items: center;
+
         & .icon {
           font-size: 36px;
         }

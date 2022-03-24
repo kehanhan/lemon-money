@@ -1,24 +1,23 @@
 const localStorageKey = "recordList";
-const recordListModel = {
+const recordStore = {
   recordList: <RecordItem[]>[],
 
-  fetch() {
+  fetchRecords() {
     this.recordList =
       JSON.parse(window.localStorage.getItem(localStorageKey)!) || [];
     return this.recordList;
   },
-  save() {
+  saveRecords() {
     window.localStorage.setItem(
       localStorageKey,
       JSON.stringify(this.recordList)
     );
   },
-  new(record: RecordItem) {
-    this.fetch();
-    const recordCopy = JSON.parse(JSON.stringify(record));
+  newRecord(record: RecordItem) {
+    const recordCopy: RecordItem = JSON.parse(JSON.stringify(record));
     recordCopy.date = new Date();
-    this.recordList.push(recordCopy);
-    this.save();
+    this.recordList?.push(recordCopy);
+    this.saveRecords();
   },
 };
-export default recordListModel;
+export default recordStore;

@@ -9,14 +9,3 @@ type RecordItem = {
   amount: number;
   date?: Date;
 };
-
-interface Window {
-  selectedType: string;
-  tagIcons: string[];
-  costTagList: TagItem[];
-  incomeTagList: TagItem[];
-  newTag: (name: string, icon: string) => TagItem | undefined;
-  removeTag: (name: string) => void;
-  recordList: RecordItem[];
-  newRecord: (record: RecordItem) => void;
-}

@@ -12,15 +12,18 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import store from "@/store/store";
+import {Component, Prop, Vue} from "vue-property-decorator";
+
 @Component
 export default class Type extends Vue {
-  @Prop({ default: "-" }) readonly type!: string;
+  @Prop({default: "-"}) readonly type!: string;
+
   selectType(type: string) {
     if (type !== "+" && type !== "-") {
       throw new Error("type is illegal");
     }
-    window.selectedType = type;
+    store.tagType = type;
     this.$emit("update:type", type);
   }
 }
@@ -28,10 +31,12 @@ export default class Type extends Vue {
 
 <style lang="scss" scoped>
 @import "src/assets/style/helper.scss";
+
 header {
   background: $color-theme;
 
   position: relative;
+
   > ul {
     height: 60px;
     display: flex;
@@ -45,9 +50,11 @@ header {
       font-size: 18px;
       font-family: $font-hei;
       position: relative;
+
       &.selected {
         color: $color-highlight-red;
       }
+
       &.selected::after {
         content: "";
         position: absolute;
@@ -57,9 +64,11 @@ header {
         width: 100%;
         background: $color-highlight-red;
       }
+
       &:last-child.selected {
         color: $color-highlight-green;
       }
+
       &:last-child.selected::after {
         background: $color-highlight-green;
       }

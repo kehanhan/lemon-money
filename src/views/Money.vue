@@ -5,7 +5,6 @@
         :notes.sync="record.notes"
         @submit="newRecord"
     />
-    {{ record }}
     <TagList
         v-if="record.type === '-'"
         :selectedTag.sync="record.tag"
@@ -25,14 +24,15 @@ import InputBox from "@/components/Money/InputBox.vue";
 import TagList from "@/components/Money/TagList.vue";
 import Type from "@/components/Money/Type.vue";
 import {Component, Vue} from "vue-property-decorator";
+import store from "@/store/store";
 
 @Component({
   components: {Type, TagList, InputBox},
 })
 export default class Money extends Vue {
-  costTagList = window.costTagList;
-  incomeTagList = window.incomeTagList;
-  recordList = window.recordList;
+  costTagList = store.fetchTags("-");
+  incomeTagList = store.fetchTags("+");
+  recordList = store.fetchRecords();
   record: RecordItem = {
     tag: {name: "", icon: ""},
     notes: "",
@@ -40,8 +40,12 @@ export default class Money extends Vue {
     amount: 0,
   };
 
+  mounted() {
+    this.record.type = store.tagType;
+  }
+
   newRecord() {
-    window.newRecord(this.record);
+    store.newRecord(this.record);
   }
 }
 </script>

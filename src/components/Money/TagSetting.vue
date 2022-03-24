@@ -10,14 +10,14 @@
       </div>
       <div class="types">
         <button
-            :class="selectedType === '-' && 'selected'"
+            :class="tagType === '-' && 'selected'"
             @click="selectType('-')"
         >
           支出
         </button
         >
         <button
-            :class="selectedType === '+' && 'selected'"
+            :class="tagType === '+' && 'selected'"
             @click="selectType('+')"
         >
           收入
@@ -25,7 +25,7 @@
       </div>
     </header>
     <main>
-      <ul v-if="selectedType === '-'">
+      <ul v-if="tagType === '-'">
         <li v-for="tag in costTagList" :key="tag.name">
           <div>
             <Icon name="remove" @click.native="removeTag(tag.name)"/>
@@ -34,7 +34,7 @@
           <span>{{ tag.name }}</span>
         </li>
       </ul>
-      <ul v-else-if="selectedType === '+'">
+      <ul v-else-if="tagType === '+'">
         <li v-for="tag in incomeTagList" :key="tag.name">
           <div>
             <Icon name="remove" @click.native="removeTag(tag.name)"/>
@@ -52,20 +52,21 @@
 
 <script lang="ts">
 import {Component, Vue} from "vue-property-decorator";
+import store from "@/store/store";
 
 @Component
 export default class Tags extends Vue {
-  selectedType = window.selectedType;
-  costTagList = window.costTagList;
-  incomeTagList = window.incomeTagList;
+  tagType = store.tagType;
+  costTagList = store.fetchTags('-');
+  incomeTagList = store.fetchTags('+');
 
   selectType(type: string) {
-    this.selectedType = type;
-    window.selectedType = type;
+    this.tagType = type;
+    store.tagType = type;
   }
 
   removeTag(name: string) {
-    window.removeTag(name);
+    store.removeTag(name);
   }
 }
 </script>

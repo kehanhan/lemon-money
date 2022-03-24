@@ -14,11 +14,28 @@ const defaultIncomeTags: TagItem[] = [
   { name: "理财", icon: "finance" },
   { name: "生活费", icon: "living-cost" },
 ];
-const TagListModel = {
+const defaultTagIcons: string[] = [
+  "clothes",
+  "food",
+  "fun",
+  "housing",
+  "traffic",
+  "bonus",
+  "finance",
+  "living-cost",
+  "lottery",
+  "part-time",
+  "refund",
+  "reimbursements",
+  "salary",
+];
+const tagStore = {
+  tagType: <string>"-",
+  tagIcons: <string[]>defaultTagIcons,
   costTagList: <TagItem[]>[],
   incomeTagList: <TagItem[]>[],
 
-  fetch(type: string) {
+  fetchTags(type: string) {
     if (type !== "-" && type !== "+") {
       throw new Error("type is illegal");
     } else if (type === "-") {
@@ -32,15 +49,15 @@ const TagListModel = {
       return this.incomeTagList;
     }
   },
-  save() {
+  saveTags() {
     window.localStorage.setItem(
-      window.selectedType === "-" ? costKey : incomeKey,
+      this.tagType === "-" ? costKey : incomeKey,
       JSON.stringify(
-        window.selectedType === "-" ? this.costTagList : this.incomeTagList
+        this.tagType === "-" ? this.costTagList : this.incomeTagList
       )
     );
   },
-  new(name: string, icon: string) {
+  newTag(name: string, icon: string) {
     if (name === "") {
       return;
     }
@@ -48,12 +65,11 @@ const TagListModel = {
       window.alert("超出最大长度");
       return;
     }
-    const type = window.selectedType;
-    if (type !== "-" && type !== "+") {
+    if (this.tagType !== "-" && this.tagType !== "+") {
       throw new Error("type is illegal");
     }
     const newTag: TagItem = { name: `${name}`, icon: `${icon}` };
-    if (type === "-") {
+    if (this.tagType === "-") {
       const names = this.costTagList.map((item) => item.name);
       if (names.indexOf(name) >= 0) {
         window.alert("标签名不能重复");
@@ -68,13 +84,13 @@ const TagListModel = {
       }
       this.incomeTagList.push(newTag);
     }
-    this.save();
+    this.saveTags();
     return newTag;
   },
-  remove(name: string) {
-    if (window.selectedType !== "-" && window.selectedType !== "+") {
+  removeTag(name: string) {
+    if (this.tagType !== "-" && this.tagType !== "+") {
       throw new Error("type is illegal");
-    } else if (window.selectedType === "-") {
+    } else if (this.tagType === "-") {
       for (let i = 0; i < this.costTagList.length; i++) {
         if (this.costTagList[i].name === name) {
           this.costTagList.splice(i, 1);
@@ -89,7 +105,7 @@ const TagListModel = {
         }
       }
     }
-    this.save();
+    this.saveTags();
   },
 };
-export default TagListModel;
+export default tagStore;

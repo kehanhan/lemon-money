@@ -6,8 +6,8 @@
           <Icon name="back"/>
           <span @click="$router.replace('/tag-setting')">返回</span>
         </span>
-        <span v-if="selectedType === '-'" class="title">添加支出类别</span>
-        <span v-else-if="selectedType === '+'" class="title">添加收入类别</span>
+        <span v-if="tagType === '-'" class="title">添加支出类别</span>
+        <span v-else-if="tagType === '+'" class="title">添加收入类别</span>
         <span class="complete" @click="complete">完成</span>
       </div>
       <div class="edit">
@@ -39,16 +39,17 @@
 
 <script lang="ts">
 import {Component, Vue} from "vue-property-decorator";
+import store from "@/store/store";
 
 @Component
 export default class AddTag extends Vue {
-  tagIcons = window.tagIcons;
-  selectedType = window.selectedType;
+  tagIcons = store.tagIcons;
+  tagType = store.tagType;
   selectedIcon = "clothes";
   tagName = "";
 
   complete() {
-    window.newTag(this.tagName, this.selectedIcon) &&
+    store.newTag(this.tagName, this.selectedIcon) &&
     this.$router.replace("/tag-setting");
   }
 }
