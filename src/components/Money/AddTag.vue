@@ -42,8 +42,8 @@ import {Component, Vue} from "vue-property-decorator";
 
 @Component
 export default class AddTag extends Vue {
-  tagIcons = this.$store.tagIcons;
-  tagType = this.$store.tagType;
+  tagIcons = this.$store.getIcons();
+  tagType = this.$store.getType();
   selectedIcon = "clothes";
   tagName = "";
 

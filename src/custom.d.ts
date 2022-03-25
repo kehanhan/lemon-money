@@ -1,7 +1,12 @@
-import Vue from "vue";
-
-declare module "vue/types/vue" {
-  interface Vue {
-    $store: any;
-  }
-}
+type TagType = "-" | "+";
+type TagItem = {
+  name: string;
+  icon: string;
+};
+type RecordItem = {
+  tag: TagItem;
+  notes: string;
+  type: TagType;
+  amount: number;
+  date?: Date;
+};

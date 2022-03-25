@@ -9,17 +9,10 @@
         <span class="title">类别设置</span>
       </div>
       <div class="types">
-        <button
-            :class="tagType === '-' && 'selected'"
-            @click="selectType('-')"
-        >
+        <button :class="tagType === '-' && 'selected'" @click="selectType('-')">
           支出
-        </button
-        >
-        <button
-            :class="tagType === '+' && 'selected'"
-            @click="selectType('+')"
-        >
+        </button>
+        <button :class="tagType === '+' && 'selected'" @click="selectType('+')">
           收入
         </button>
       </div>
@@ -55,13 +48,13 @@ import {Component, Vue} from "vue-property-decorator";
 
 @Component
 export default class Tags extends Vue {
-  tagType = this.$store.tagType;
-  costTagList = this.$store.fetchTags('-');
-  incomeTagList = this.$store.fetchTags('+');
+  tagType = this.$store.getType();
+  costTagList = this.$store.getTags("-");
+  incomeTagList = this.$store.getTags("+");
 
-  selectType(type: string) {
+  selectType(type: TagType) {
     this.tagType = type;
-    this.$store.tagType = type;
+    this.$store.setType(type);
   }
 
   removeTag(name: string) {

@@ -29,33 +29,19 @@ const defaultTagIcons: string[] = [
   "reimbursements",
   "salary",
 ];
-const tagStore = {
-  tagType: <string>"-",
-  tagIcons: <string[]>defaultTagIcons,
-  costTagList: <TagItem[]>[],
-  incomeTagList: <TagItem[]>[],
+let tagType: TagType = "-";
+let costTagList: TagItem[] = [];
+let incomeTagList: TagItem[] = [];
 
-  fetchTags(type: string) {
-    if (type !== "-" && type !== "+") {
-      throw new Error("type is illegal");
-    } else if (type === "-") {
-      this.costTagList =
-        JSON.parse(window.localStorage.getItem(costKey)!) || defaultCostTags;
-      return this.costTagList;
-    } else {
-      this.incomeTagList =
-        JSON.parse(window.localStorage.getItem(incomeKey)!) ||
-        defaultIncomeTags;
-      return this.incomeTagList;
-    }
+const tagStore = {
+  getType() {
+    return tagType;
   },
-  saveTags() {
-    window.localStorage.setItem(
-      this.tagType === "-" ? costKey : incomeKey,
-      JSON.stringify(
-        this.tagType === "-" ? this.costTagList : this.incomeTagList
-      )
-    );
+  setType(type: TagType) {
+    tagType = type;
+  },
+  getIcons() {
+    return defaultTagIcons;
   },
   newTag(name: string, icon: string) {
     if (name === "") {
@@ -65,47 +51,60 @@ const tagStore = {
       window.alert("超出最大长度");
       return;
     }
-    if (this.tagType !== "-" && this.tagType !== "+") {
-      throw new Error("type is illegal");
-    }
     const newTag: TagItem = { name: `${name}`, icon: `${icon}` };
-    if (this.tagType === "-") {
-      const names = this.costTagList.map((item) => item.name);
+    if (tagType === "-") {
+      const names = costTagList.map((item) => item.name);
       if (names.indexOf(name) >= 0) {
         window.alert("标签名不能重复");
         return;
       }
-      this.costTagList.push(newTag);
+      costTagList.push(newTag);
     } else {
-      const names = this.incomeTagList.map((item) => item.name);
+      const names = incomeTagList.map((item) => item.name);
       if (names.indexOf(name) >= 0) {
         window.alert("标签名不能重复");
         return;
       }
-      this.incomeTagList.push(newTag);
+      incomeTagList.push(newTag);
     }
     this.saveTags();
     return newTag;
   },
   removeTag(name: string) {
-    if (this.tagType !== "-" && this.tagType !== "+") {
-      throw new Error("type is illegal");
-    } else if (this.tagType === "-") {
-      for (let i = 0; i < this.costTagList.length; i++) {
-        if (this.costTagList[i].name === name) {
-          this.costTagList.splice(i, 1);
+    if (tagType === "-") {
+      for (let i = 0; i < costTagList.length; i++) {
+        if (costTagList[i].name === name) {
+          costTagList.splice(i, 1);
           break;
         }
       }
     } else {
-      for (let i = 0; i < this.incomeTagList.length; i++) {
-        if (this.incomeTagList[i].name === name) {
-          this.incomeTagList.splice(i, 1);
+      for (let i = 0; i < incomeTagList.length; i++) {
+        if (incomeTagList[i].name === name) {
+          incomeTagList.splice(i, 1);
           break;
         }
       }
     }
     this.saveTags();
+  },
+  getTags(type: TagType) {
+    if (type === "-") {
+      costTagList =
+        JSON.parse(window.localStorage.getItem(costKey)!) || defaultCostTags;
+      return costTagList;
+    } else {
+      incomeTagList =
+        JSON.parse(window.localStorage.getItem(incomeKey)!) ||
+        defaultIncomeTags;
+      return incomeTagList;
+    }
+  },
+  saveTags() {
+    window.localStorage.setItem(
+      tagType === "-" ? costKey : incomeKey,
+      JSON.stringify(tagType === "-" ? costTagList : incomeTagList)
+    );
   },
 };
 export default tagStore;

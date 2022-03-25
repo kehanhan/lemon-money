@@ -22,7 +22,7 @@ export default class Type extends Vue {
     if (type !== "+" && type !== "-") {
       throw new Error("type is illegal");
     }
-    this.$store.tagType = type;
+    this.$store.setType(type);
     this.$emit("update:type", type);
   }
 }

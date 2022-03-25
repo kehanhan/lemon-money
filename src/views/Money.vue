@@ -29,9 +29,8 @@ import {Component, Vue} from "vue-property-decorator";
   components: {Type, TagList, InputBox},
 })
 export default class Money extends Vue {
-  costTagList = this.$store.fetchTags("-");
-  incomeTagList = this.$store.fetchTags("+");
-  recordList = this.$store.fetchRecords();
+  costTagList = this.$store.getTags("-");
+  incomeTagList = this.$store.getTags("+");
   record: RecordItem = {
     tag: {name: "", icon: ""},
     notes: "",
@@ -40,7 +39,7 @@ export default class Money extends Vue {
   };
 
   mounted() {
-    this.record.type = this.$store.tagType;
+    this.record.type = this.$store.getType();
   }
 
   newRecord() {
