@@ -39,17 +39,16 @@
 
 <script lang="ts">
 import {Component, Vue} from "vue-property-decorator";
-import store from "@/store/store";
 
 @Component
 export default class AddTag extends Vue {
-  tagIcons = store.tagIcons;
-  tagType = store.tagType;
+  tagIcons = this.$store.tagIcons;
+  tagType = this.$store.tagType;
   selectedIcon = "clothes";
   tagName = "";
 
   complete() {
-    store.newTag(this.tagName, this.selectedIcon) &&
+    this.$store.newTag(this.tagName, this.selectedIcon) &&
     this.$router.replace("/tag-setting");
   }
 }

@@ -1,11 +1,7 @@
-type TagItem = {
-  name: string;
-  icon: string;
-};
-type RecordItem = {
-  tag: TagItem;
-  notes: string;
-  type: string;
-  amount: number;
-  date?: Date;
-};
+import Vue from "vue";
+
+declare module "vue/types/vue" {
+  interface Vue {
+    $store: any;
+  }
+}

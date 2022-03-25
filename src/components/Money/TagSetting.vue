@@ -52,21 +52,20 @@
 
 <script lang="ts">
 import {Component, Vue} from "vue-property-decorator";
-import store from "@/store/store";
 
 @Component
 export default class Tags extends Vue {
-  tagType = store.tagType;
-  costTagList = store.fetchTags('-');
-  incomeTagList = store.fetchTags('+');
+  tagType = this.$store.tagType;
+  costTagList = this.$store.fetchTags('-');
+  incomeTagList = this.$store.fetchTags('+');
 
   selectType(type: string) {
     this.tagType = type;
-    store.tagType = type;
+    this.$store.tagType = type;
   }
 
   removeTag(name: string) {
-    store.removeTag(name);
+    this.$store.removeTag(name);
   }
 }
 </script>

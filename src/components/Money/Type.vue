@@ -12,7 +12,6 @@
 </template>
 
 <script lang="ts">
-import store from "@/store/store";
 import {Component, Prop, Vue} from "vue-property-decorator";
 
 @Component
@@ -23,7 +22,7 @@ export default class Type extends Vue {
     if (type !== "+" && type !== "-") {
       throw new Error("type is illegal");
     }
-    store.tagType = type;
+    this.$store.tagType = type;
     this.$emit("update:type", type);
   }
 }
