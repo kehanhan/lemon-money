@@ -23,7 +23,7 @@
 import InputBox from "@/components/Money/InputBox.vue";
 import TagList from "@/components/Money/TagList.vue";
 import Type from "@/components/Money/Type.vue";
-import {Component, Vue} from "vue-property-decorator";
+import {Component, Vue, Watch} from "vue-property-decorator";
 
 @Component({
   components: {Type, TagList, InputBox},
@@ -32,7 +32,7 @@ export default class Money extends Vue {
   costTagList = this.$store.getTags("-");
   incomeTagList = this.$store.getTags("+");
   record: RecordItem = {
-    tag: {name: "", icon: ""},
+    tag: {name: "其他", icon: "other"},
     notes: "",
     type: "-",
     amount: 0,
@@ -44,6 +44,11 @@ export default class Money extends Vue {
 
   newRecord() {
     this.$store.newRecord(this.record);
+  }
+
+  @Watch('record.type')
+  onTypeChanged() {
+    this.record.tag = {name: "其他", icon: "other"};
   }
 }
 </script>

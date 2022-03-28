@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="money-header">
     <ul>
       <li :class="type === '-' && 'selected'" @click="selectType('-')">
         <strong>支出</strong>
@@ -31,7 +31,7 @@ export default class Type extends Vue {
 <style lang="scss" scoped>
 @import "src/assets/style/helper.scss";
 
-header {
+.money-header {
   background: $color-theme;
 
   position: relative;

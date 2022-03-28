@@ -1,6 +1,15 @@
 <template>
   <section class="tag_list">
     <ul>
+      <li>
+        <div
+            :class="{ selected: selectedTag.name === '其他'}"
+            @click="$emit('update:selectedTag',{name:'其他',icon:'other'})"
+        >
+          <Icon name="other"/>
+        </div>
+        <span>其他</span>
+      </li>
       <li v-for="tag in tagList" :key="tag.name">
         <div
             :class="{ selected: tag.name === selectedTag.name }"
@@ -59,8 +68,7 @@ export default class TagList extends Vue {
         width: 48px;
         height: 48px;
         border-radius: 50%;
-        border: 1px solid;
-        border-color: #e5e7eb;
+        border: 1px solid #e5e7eb;
         background: #f5f5f5;
         display: flex;
         justify-content: center;

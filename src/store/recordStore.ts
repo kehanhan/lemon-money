@@ -3,7 +3,7 @@ let recordList: RecordItem[] = [];
 const recordStore = {
   newRecord(record: RecordItem) {
     const recordCopy: RecordItem = JSON.parse(JSON.stringify(record));
-    recordCopy.date = new Date();
+    recordCopy.date = new Date().toISOString();
     recordList?.push(recordCopy);
     this.saveRecords();
   },
