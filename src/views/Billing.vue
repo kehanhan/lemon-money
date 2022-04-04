@@ -7,30 +7,34 @@
       <div class="info">
         <div class="date">
           <span class="summary">2022年</span
-          ><span class="data">03月<i class="icon_down"></i></span>
+          ><span class="month">03月<i class="icon_down"></i></span>
         </div>
         <div class="income">
           <span class="summary">收入</span><span class="data">0.00</span>
         </div>
         <div class="cost">
-          <span class="summary">支出</span
-          ><span class="data">0.00</span>
+          <span class="summary">支出</span><span class="data">0.00</span>
         </div>
       </div>
     </header>
     <main>
       <ol>
-        <li v-for="(record, index) in records" :key="index">
-          <div class="icon">
-            <Icon :name="record.tag.icon"/>
-          </div>
-          <div class="record">
-            <span>{{ record.tag.name }}</span>
-            <span>
-              <span>{{ record.type }}</span
-              >{{ record.amount }}</span
-            >
-          </div>
+        <li v-for="(group, index) in result" :key="index">
+          <span class="day">{{ group.day }}</span>
+          <ol>
+            <li class="item" v-for="item in group.items" :key="item">
+              <div class="icon">
+                <Icon :name="item.tag.icon" />
+              </div>
+              <div class="record">
+                <span>{{ item.tag.name }}</span>
+                <span>
+                  <span>{{ item.type }}</span
+                  >{{ item.amount }}</span
+                >
+              </div>
+            </li>
+          </ol>
         </li>
       </ol>
     </main>
@@ -38,12 +42,25 @@
 </template>
 
 <script lang="ts">
-import {Vue} from "vue-property-decorator";
+import { Vue } from "vue-property-decorator";
 import Component from "vue-class-component";
+import dayjs from "dayjs";
 
 @Component
 export default class Billing extends Vue {
   records: RecordItem[] = [];
+  now = dayjs();
+
+  get result() {
+    type HashTableValue = { day: string; items: RecordItem[] };
+    const hashTable: { [key: string]: HashTableValue } = {};
+    for (let i = 0; i < this.records.length; i++) {
+      const [date] = this.records[i].date!.split("T");
+      hashTable[date] = hashTable[date] || { day: date, items: [] };
+      hashTable[date].items.push(this.records[i]);
+    }
+    return hashTable;
+  }
 
   mounted() {
     this.records = this.$store.getRecords();
@@ -83,7 +100,7 @@ export default class Billing extends Vue {
       min-width: 25%;
       padding-left: 5%;
 
-      & .data {
+      & .month {
         display: block;
         border-right: 1px solid #555;
         position: relative;
@@ -106,7 +123,6 @@ export default class Billing extends Vue {
 
     & .cost {
       min-width: 37.5%;
-
     }
   }
 
@@ -123,7 +139,12 @@ export default class Billing extends Vue {
 }
 
 main {
-  & li {
+  .day {
+    color: #999;
+    padding-left: 8px;
+  }
+
+  & .item {
     border: 1px solid #eee;
     display: flex;
     align-items: center;
