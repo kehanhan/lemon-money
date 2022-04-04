@@ -36,7 +36,7 @@ export default class Money extends Vue {
     tag: { name: "其他", icon: "other" },
     notes: "",
     type: "-",
-    amount: 0,
+    amount: 0.0,
     date: "",
   };
 
@@ -44,7 +44,7 @@ export default class Money extends Vue {
     this.record.type = this.$store.getType();
   }
 
-  newRecord(date: Date) {
+  newRecord() {
     this.$store.newRecord(this.record);
   }
 

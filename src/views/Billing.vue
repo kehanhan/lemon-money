@@ -5,15 +5,17 @@
         <strong>柠檬记账</strong>
       </div>
       <div class="info">
-        <div class="date">
-          <span class="summary year">2022年</span
-          ><span class="month">03月<i class="icon_down"></i></span>
-        </div>
+        <!--        <div class="date">-->
+        <!--          <span class="summary year">2022年</span-->
+        <!--          ><span class="month">03月<i class="icon_down"></i></span>-->
+        <!--        </div>-->
         <div class="income">
-          <span class="summary">收入</span><span class="data">0.00</span>
+          <span class="summary">收入</span
+          ><span class="data">{{ totalIncome }}</span>
         </div>
         <div class="cost">
-          <span class="summary">支出</span><span class="data">0.00</span>
+          <span class="summary">支出</span
+          ><span class="data">{{ totalCost }}</span>
         </div>
       </div>
     </header>
@@ -50,6 +52,8 @@ import dayjs from "dayjs";
 export default class Billing extends Vue {
   records: RecordItem[] = [];
   now = dayjs();
+  totalCost = 0.0;
+  totalIncome = 0.0;
 
   get result() {
     type HashTableValue = { day: string; items: RecordItem[] };
@@ -64,6 +68,13 @@ export default class Billing extends Vue {
 
   mounted() {
     this.records = this.$store.getRecords();
+    for (let i = 0; i < this.records.length; i++) {
+      if (this.records[i].type === "-") {
+        this.totalCost += this.records[i].amount;
+      } else {
+        this.totalIncome += this.records[i].amount;
+      }
+    }
   }
 }
 </script>
@@ -96,33 +107,37 @@ export default class Billing extends Vue {
       flex-direction: column;
     }
 
-    & .date {
-      min-width: 25%;
-      padding-left: 5%;
-
-      & .month {
-        display: block;
-        border-right: 1px solid #555;
-        position: relative;
-      }
-
-      & .icon_down {
-        border-style: solid;
-        border-width: 10px 6px;
-        border-color: black transparent transparent;
-        position: absolute;
-        top: 0.5rem;
-        left: 2.5rem;
-      }
-    }
+    //& .date {
+    //  min-width: 25%;
+    //  padding-left: 5%;
+    //
+    //  & .month {
+    //    display: block;
+    //    border-right: 1px solid #555;
+    //    position: relative;
+    //  }
+    //
+    //  & .icon_down {
+    //    border-style: solid;
+    //    border-width: 10px 6px;
+    //    border-color: black transparent transparent;
+    //    position: absolute;
+    //    top: 0.5rem;
+    //    left: 2.5rem;
+    //  }
+    //}
 
     & .income {
-      min-width: 37.5%;
-      padding-left: 7%;
+      //min-width: 37.5%;
+      //padding-left: 7%;
+      min-width: 50%;
+      text-align: center;
     }
 
     & .cost {
-      min-width: 37.5%;
+      //min-width: 37.5%;
+      min-width: 50%;
+      text-align: center;
     }
   }
 
