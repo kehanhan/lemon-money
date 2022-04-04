@@ -8,5 +8,5 @@ type RecordItem = {
   notes: string;
   type: TagType;
   amount: number;
-  date?: string;
+  date: string;
 };

@@ -6,7 +6,7 @@
       </div>
       <div class="info">
         <div class="date">
-          <span class="summary">2022年</span
+          <span class="summary year">2022年</span
           ><span class="month">03月<i class="icon_down"></i></span>
         </div>
         <div class="income">
@@ -19,10 +19,10 @@
     </header>
     <main>
       <ol>
-        <li v-for="(group, index) in result" :key="index">
-          <span class="day">{{ group.day }}</span>
+        <li class="group" v-for="(group, index) in result" :key="index">
+          <span>{{ group.day }}</span>
           <ol>
-            <li class="item" v-for="item in group.items" :key="item">
+            <li class="item" v-for="(item, index) in group.items" :key="index">
               <div class="icon">
                 <Icon :name="item.tag.icon" />
               </div>
@@ -55,7 +55,7 @@ export default class Billing extends Vue {
     type HashTableValue = { day: string; items: RecordItem[] };
     const hashTable: { [key: string]: HashTableValue } = {};
     for (let i = 0; i < this.records.length; i++) {
-      const [date] = this.records[i].date!.split("T");
+      const date = this.records[i].date;
       hashTable[date] = hashTable[date] || { day: date, items: [] };
       hashTable[date].items.push(this.records[i]);
     }
@@ -111,8 +111,8 @@ export default class Billing extends Vue {
         border-width: 10px 6px;
         border-color: black transparent transparent;
         position: absolute;
-        top: 0.6rem;
-        left: 3rem;
+        top: 0.5rem;
+        left: 2.5rem;
       }
     }
 
@@ -139,9 +139,13 @@ export default class Billing extends Vue {
 }
 
 main {
-  .day {
-    color: #999;
-    padding-left: 8px;
+  .group {
+    margin: 5px 0;
+
+    & > span {
+      padding-left: 8px;
+      color: #999;
+    }
   }
 
   & .item {
