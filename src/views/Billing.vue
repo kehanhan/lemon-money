@@ -27,7 +27,7 @@
                 <Icon :name="item.tag.icon" />
               </div>
               <div class="record">
-                <span>{{ item.tag.name }}</span>
+                <span>{{ item.notes ? item.notes : item.tag.name }}</span>
                 <span>
                   <span>{{ item.type }}</span
                   >{{ item.amount }}</span
