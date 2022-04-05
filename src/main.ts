@@ -28,7 +28,7 @@ if (document.documentElement.clientWidth > 500) {
   window.alert("推荐使用手机扫码打开本页面");
   const img = document.createElement("img");
   img.id = "qrcode";
-  img.src = "/qrcode.png";
+  img.src = "./qrcode.png";
   img.style.position = "fixed";
   img.style.left = "50%";
   img.style.top = "50%";
