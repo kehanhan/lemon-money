@@ -52,7 +52,7 @@ export default class Stats extends Vue {
         radius: ["40%", "70%"],
         avoidLabelOverlap: false,
         label: {
-          show: false,
+          show: true,
           position: "center",
         },
         emphasis: {
