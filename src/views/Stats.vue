@@ -65,7 +65,7 @@ export default class Stats extends Vue {
         labelLine: {
           show: false,
         },
-        data: [],
+        data: [] as Array<any>,
       },
     ],
   };

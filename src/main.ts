@@ -24,15 +24,6 @@ new Vue({
   render: (h) => h(App),
 }).$mount("#app");
 
-window.onload = function () {
-  setTimeout(function () {
-    window.scrollTo(0, 200);
-  }, 0);
-};
-window.onclick = function (e: MouseEvent) {
-  const qrcode = document.getElementById("qrcode");
-  qrcode!.style.display = "none";
-};
 if (document.documentElement.clientWidth > 500) {
   window.alert("推荐使用手机扫码打开本页面");
   const img = document.createElement("img");
@@ -45,3 +36,8 @@ if (document.documentElement.clientWidth > 500) {
   img.style.boxShadow = "0 0 10px rgba(0,0,0,0.25)";
   document.body.appendChild(img);
 }
+
+window.onclick = function (e: MouseEvent) {
+  const qrcode = document.getElementById("qrcode");
+  qrcode!.style.display = "none";
+};
