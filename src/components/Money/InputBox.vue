@@ -14,11 +14,11 @@
       <button @click="inputContent">3</button>
       <button id="today">
         <Icon name="calender" />
-        今天
         <el-date-picker
           v-model="date"
           type="date"
           value-format="yyyy-MM-dd"
+          :editable="false"
         ></el-date-picker>
       </button>
       <button @click="inputContent">4</button>

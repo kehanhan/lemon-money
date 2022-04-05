@@ -12,16 +12,13 @@
 </template>
 
 <script lang="ts">
-import {Component, Prop, Vue} from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class Type extends Vue {
-  @Prop({default: "-"}) readonly type!: string;
+  @Prop({ default: "-" }) readonly type!: string;
 
-  selectType(type: string) {
-    if (type !== "+" && type !== "-") {
-      throw new Error("type is illegal");
-    }
+  selectType(type: "+" | "-") {
     this.$store.setType(type);
     this.$emit("update:type", type);
   }

@@ -1259,6 +1259,13 @@
   dependencies:
     "@types/node" "*"
 
+"@types/echarts@^4.9.13":
+  version "4.9.13"
+  resolved "https://registry.npmmirror.com/@types/echarts/-/echarts-4.9.13.tgz#b4a56f8ff471af65dd54b196af6972629d6745d4"
+  integrity sha512-xqZ21MXOBU5i+BywnxAi0He+M6lsRtANBvbqJHmqM8T64Lx7azHJWbv/vSKVJfEbv3XyYpxeDhpV7gFi5mfgeA==
+  dependencies:
+    "@types/zrender" "*"
+
 "@types/express-serve-static-core@*", "@types/express-serve-static-core@^4.17.18":
   version "4.17.28"
   resolved "https://registry.npmmirror.com/@types/express-serve-static-core/-/express-serve-static-core-4.17.28.tgz#c47def9f34ec81dc6328d0b1b5303d1ec98d86b8"
@@ -1458,6 +1465,11 @@
   integrity sha512-qCxJE1qgz2y0hA4pIxjBR+PelCH0U5CK1XJXFwCNqfmliatKp47UCXXE9Dyk1OXBDLvsCF57TqQEJaeLfDYEOQ==
   dependencies:
     "@types/yargs-parser" "*"
+
+"@types/zrender@*":
+  version "4.0.1"
+  resolved "https://registry.npmmirror.com/@types/zrender/-/zrender-4.0.1.tgz#6280c40207927ce086be24b4391d668cd330e956"
+  integrity sha512-IyTRf30jPOXK1+1RChI/78U6aV9hyWYf/vhL96Vt66oDz9es/BDjeKpvbNZSOHVA7zAReOwJcmdZS5AGAqhygw==
 
 "@typescript-eslint/eslint-plugin@^4.18.0":
   version "4.33.0"
@@ -1837,6 +1849,11 @@
     vue-template-es2015-compiler "^1.9.0"
   optionalDependencies:
     prettier "^1.18.2 || ^2.0.0"
+
+"@vue/composition-api@^1.4.9":
+  version "1.4.9"
+  resolved "https://registry.npmmirror.com/@vue/composition-api/-/composition-api-1.4.9.tgz#6fa65284f545887b52d421f23b4fa1c41bc0ad4b"
+  integrity sha512-l6YOeg5LEXmfPqyxAnBaCv1FMRw0OGKJ4m6nOWRm6ngt5TuHcj5ZoBRN+LXh3J0u6Ur3C4VA+RiKT+M0eItr/g==
 
 "@vue/eslint-config-typescript@^7.0.0":
   version "7.0.0"
@@ -4220,6 +4237,14 @@ ecc-jsbn@~0.1.1:
   dependencies:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
+
+echarts@^5.3.2:
+  version "5.3.2"
+  resolved "https://registry.npmmirror.com/echarts/-/echarts-5.3.2.tgz#0a7b3be8c48a48b2e7cb1b82121df0c208d42d2c"
+  integrity sha512-LWCt7ohOKdJqyiBJ0OGBmE9szLdfA9sGcsMEi+GGoc6+Xo75C+BkcT/6NNGRHAWtnQl2fNow05AQjznpap28TQ==
+  dependencies:
+    tslib "2.3.0"
+    zrender "5.3.1"
 
 editorconfig@^0.15.3:
   version "0.15.3"
@@ -9255,6 +9280,11 @@ requires-port@^1.0.0:
   resolved "https://registry.npmmirror.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
   integrity sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ==
 
+resize-detector@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.npmmirror.com/resize-detector/-/resize-detector-0.3.0.tgz#fe495112e184695500a8f51e0389f15774cb1cfc"
+  integrity sha512-R/tCuvuOHQ8o2boRP6vgx8hXCCy87H1eY9V5imBYeVNyNVpuL9ciReSccLj2gDcax9+2weXy3bc8Vv+NRXeEvQ==
+
 resize-observer-polyfill@^1.5.0:
   version "1.5.1"
   resolved "https://registry.npmmirror.com/resize-observer-polyfill/-/resize-observer-polyfill-1.5.1.tgz#0e9020dd3d21024458d4ebd27e23e40269810464"
@@ -10558,6 +10588,11 @@ tsconfig@^7.0.0:
     strip-bom "^3.0.0"
     strip-json-comments "^2.0.0"
 
+tslib@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.npmmirror.com/tslib/-/tslib-2.3.0.tgz#803b8cdab3e12ba581a4ca41c8839bbb0dacb09e"
+  integrity sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==
+
 tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.14.1"
   resolved "https://registry.npmmirror.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
@@ -10929,6 +10964,19 @@ vue-class-component@^7.2.3:
   version "7.2.6"
   resolved "https://registry.npmmirror.com/vue-class-component/-/vue-class-component-7.2.6.tgz#8471e037b8e4762f5a464686e19e5afc708502e4"
   integrity sha512-+eaQXVrAm/LldalI272PpDe3+i4mPis0ORiMYxF6Ae4hyuCh15W8Idet7wPUEs4N4YptgFHGys4UrgNQOMyO6w==
+
+vue-demi@^0.12.1:
+  version "0.12.5"
+  resolved "https://registry.npmmirror.com/vue-demi/-/vue-demi-0.12.5.tgz#8eeed566a7d86eb090209a11723f887d28aeb2d1"
+  integrity sha512-BREuTgTYlUr0zw0EZn3hnhC3I6gPWv+Kwh4MCih6QcAeaTlaIX0DwOVN0wHej7hSvDPecz4jygy/idsgKfW58Q==
+
+vue-echarts@^6.0.2:
+  version "6.0.2"
+  resolved "https://registry.npmmirror.com/vue-echarts/-/vue-echarts-6.0.2.tgz#f6d65c4b328d246da9060ded07b83556c1bef09b"
+  integrity sha512-9xDokauJtAc389MNKbwi1I0VDmp4Y6ndAJTQ8T9K7H0ffosTe1OJSJbUtkT7/fVLDFzlCcmg2TfAKaMzbpg5yQ==
+  dependencies:
+    resize-detector "^0.3.0"
+    vue-demi "^0.12.1"
 
 vue-eslint-parser@^7.0.0:
   version "7.11.0"
@@ -11621,3 +11669,10 @@ yorkie@^2.0.0:
     is-ci "^1.0.10"
     normalize-path "^1.0.0"
     strip-indent "^2.0.0"
+
+zrender@5.3.1:
+  version "5.3.1"
+  resolved "https://registry.npmmirror.com/zrender/-/zrender-5.3.1.tgz#fa8e63ac7e719cfd563831fe8c42a9756c5af384"
+  integrity sha512-7olqIjy0gWfznKr6vgfnGBk7y4UtdMvdwFmK92vVQsQeDPyzkHW1OlrLEKg6GHz1W5ePf0FeN1q2vkl/HFqhXw==
+  dependencies:
+    tslib "2.3.0"
