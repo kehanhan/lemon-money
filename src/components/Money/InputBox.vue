@@ -12,6 +12,10 @@
       <button @click="inputContent">1</button>
       <button @click="inputContent">2</button>
       <button @click="inputContent">3</button>
+      <button @click="inputContent">{{ date }}</button>
+      <button @click="inputContent">4</button>
+      <button @click="inputContent">5</button>
+      <button @click="inputContent">6</button>
       <button id="today">
         <Icon name="calender" />
         <el-date-picker
@@ -21,14 +25,10 @@
           :editable="false"
         ></el-date-picker>
       </button>
-      <button @click="inputContent">4</button>
-      <button @click="inputContent">5</button>
-      <button @click="inputContent">6</button>
-      <button @click="inputContent">-</button>
       <button @click="inputContent">7</button>
       <button @click="inputContent">8</button>
       <button @click="inputContent">9</button>
-      <button @click="inputContent">+</button>
+      <button @click="clearContent">清空</button>
       <button @click="inputContent">.</button>
       <button @click="inputContent">0</button>
       <button @click="deleteContent()">
@@ -68,6 +68,10 @@ export default class InputBox extends Vue {
     } else {
       this.output += input;
     }
+  }
+
+  clearContent() {
+    this.output = "0";
   }
 
   deleteContent() {
