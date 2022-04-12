@@ -2,8 +2,8 @@
   <div class="wrapper">
     <header>
       <div class="text">
-        <div class="back" @click="$router.replace('/money')">
-          <Icon name="back"/>
+        <div class="back" @click="$router.push('/money')">
+          <Icon name="back" />
           <span>返回</span>
         </div>
         <span class="title">类别设置</span>
@@ -21,8 +21,8 @@
       <ul v-if="tagType === '-'">
         <li v-for="tag in costTagList" :key="tag.name">
           <div>
-            <Icon name="remove" @click.native="removeTag(tag.name)"/>
-            <Icon :name="tag.icon"/>
+            <Icon name="remove" @click.native="removeTag(tag.name)" />
+            <Icon :name="tag.icon" />
           </div>
           <span>{{ tag.name }}</span>
         </li>
@@ -30,21 +30,21 @@
       <ul v-else-if="tagType === '+'">
         <li v-for="tag in incomeTagList" :key="tag.name">
           <div>
-            <Icon name="remove" @click.native="removeTag(tag.name)"/>
-            <Icon :name="tag.icon"/>
+            <Icon name="remove" @click.native="removeTag(tag.name)" />
+            <Icon :name="tag.icon" />
           </div>
           <span>{{ tag.name }}</span>
         </li>
       </ul>
     </main>
     <footer>
-      <button id="addTag" @click="$router.replace('/addTag')">添加类别</button>
+      <button id="addTag" @click="$router.push('/addTag')">添加类别</button>
     </footer>
   </div>
 </template>
 
 <script lang="ts">
-import {Component, Vue} from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class Tags extends Vue {
@@ -52,7 +52,7 @@ export default class Tags extends Vue {
   costTagList = this.$store.getTags("-");
   incomeTagList = this.$store.getTags("+");
 
-  selectType(type: TagType) {
+  selectType(type: "-" | "+") {
     this.tagType = type;
     this.$store.setType(type);
   }

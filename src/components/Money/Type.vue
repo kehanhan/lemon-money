@@ -48,7 +48,7 @@ export default class Type extends Vue {
       position: relative;
 
       &.selected {
-        color: $color-highlight-red;
+        color: $color-highlight-green;
       }
 
       &.selected::after {
@@ -58,15 +58,15 @@ export default class Type extends Vue {
         left: 0;
         height: 4px;
         width: 100%;
-        background: $color-highlight-red;
+        background: $color-highlight-green;
       }
 
       &:last-child.selected {
-        color: $color-highlight-green;
+        color: $color-highlight-red;
       }
 
       &:last-child.selected::after {
-        background: $color-highlight-green;
+        background: $color-highlight-red;
       }
     }
   }

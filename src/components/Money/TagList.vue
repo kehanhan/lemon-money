@@ -20,7 +20,7 @@
         <span>{{ tag.name }}</span>
       </li>
       <li>
-        <div @click="$router.replace('/tag-setting')">
+        <div @click="$router.push('/tag-setting')">
           <Icon name="setting"/>
         </div>
         <span>设置</span>

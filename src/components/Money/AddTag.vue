@@ -3,8 +3,8 @@
     <header>
       <div class="text">
         <span class="back">
-          <Icon name="back"/>
-          <span @click="$router.replace('/tag-setting')">返回</span>
+          <Icon name="back" />
+          <span @click="$router.push('/tag-setting')">返回</span>
         </span>
         <span v-if="tagType === '-'" class="title">添加支出类别</span>
         <span v-else-if="tagType === '+'" class="title">添加收入类别</span>
@@ -12,12 +12,12 @@
       </div>
       <div class="edit">
         <div id="selectedIcon" class="tagIcon">
-          <Icon :name="selectedIcon"/>
+          <Icon :name="selectedIcon" />
         </div>
         <input
-            v-model="tagName"
-            placeholder="请输入类别名称(不超过4个汉字)"
-            type="text"
+          v-model="tagName"
+          placeholder="请输入类别名称(不超过4个汉字)"
+          type="text"
         />
       </div>
     </header>
@@ -25,11 +25,11 @@
       <ul>
         <li v-for="icon in tagIcons" :key="icon">
           <div
-              :class="{ selected: icon === selectedIcon }"
-              class="tagIcon"
-              @click="selectedIcon = icon"
+            :class="{ selected: icon === selectedIcon }"
+            class="tagIcon"
+            @click="selectedIcon = icon"
           >
-            <Icon :name="icon"/>
+            <Icon :name="icon" />
           </div>
         </li>
       </ul>
@@ -38,7 +38,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Vue} from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 
 @Component
 export default class AddTag extends Vue {
@@ -49,7 +49,7 @@ export default class AddTag extends Vue {
 
   complete() {
     this.$store.newTag(this.tagName, this.selectedIcon) &&
-    this.$router.replace("/tag-setting");
+      this.$router.push("/tag-setting");
   }
 }
 </script>
