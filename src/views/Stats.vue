@@ -37,35 +37,31 @@ export default class Stats extends Vue {
   costData: Array<any> = [];
   incomeData: Array<any> = [];
   option = {
+    title: {
+      text: "分类统计",
+      left: "center",
+      top: "5%",
+    },
     tooltip: {
       trigger: "item",
-      formatter: "{a} <br/>{b} : {c} ({d}%)",
     },
     legend: {
-      top: "5%",
-      left: "center",
+      orient: "vertical",
+      left: "left",
     },
     series: [
       {
-        name: "支出类别",
+        name: "标签",
         type: "pie",
-        radius: ["40%", "70%"],
-        avoidLabelOverlap: false,
-        label: {
-          show: true,
-          position: "center",
-        },
+        radius: "50%",
+        data: [] as Array<any>,
         emphasis: {
-          label: {
-            show: true,
-            fontSize: "40",
-            fontWeight: "bold",
+          itemStyle: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: "rgba(0, 0, 0, 0.5)",
           },
         },
-        labelLine: {
-          show: false,
-        },
-        data: [] as Array<any>,
       },
     ],
   };

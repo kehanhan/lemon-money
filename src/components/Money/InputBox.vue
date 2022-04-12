@@ -88,6 +88,7 @@ export default class InputBox extends Vue {
       this.$emit("update:date", this.date);
       this.$emit("submit");
       this.output = "0";
+      this.$router.replace("/billing");
     }
   }
 }
