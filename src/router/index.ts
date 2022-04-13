@@ -6,6 +6,7 @@ import Stats from "@/views/Stats.vue";
 import NotFound from "@/views/NotFound.vue";
 import TagSetting from "@/components/Money/TagSetting.vue";
 import AddTag from "@/components/Money/AddTag.vue";
+import Login from "@/components/Login.vue";
 
 Vue.use(VueRouter);
 
@@ -33,6 +34,10 @@ const routes: Array<RouteConfig> = [
   {
     path: "/addTag",
     component: AddTag,
+  },
+  {
+    path: "/login",
+    component: Login,
   },
   {
     path: "*",
